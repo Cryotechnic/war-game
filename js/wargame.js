@@ -71,7 +71,8 @@ function dealCards() {
     dealerImg.setAttribute('src', 'img/' + dealerCard + '.png');
 
     // Overwrites element if it already exists, appends if it doesn't
-    //pointCount();
+    compare(playerCard, dealerCard);
+    pointCount();
     card1.appendChild(playerImg);
     card2.appendChild(dealerImg);
 
@@ -106,10 +107,22 @@ function dealCards() {
         card2.appendChild(dealerImgExtra1);
         card2.appendChild(dealerImgExtra2);
         card2.appendChild(dealerImgExtra3);
-        //pointCount();
+        compare(playerCard, dealerCard);
+        pointCount();
+        return [playerCard, dealerCard];
     }
 }
 
-function compare() {
-
+function compare(playerCard, dealerCard) {
+    if (playerCard > dealerCard) {
+        console.log("player won"); // Implement proper formatting
+        playerScore++; 
+        //checkWin();
+    } else if (playerCard < dealerCard) {
+        console.log("dealer won"); // Implement proper formatting
+        dealerScore++;
+        //checkWin();
+    } else {
+        console.log("tie");
+    }
 }
