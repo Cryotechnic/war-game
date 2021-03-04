@@ -1,0 +1,74 @@
+#wrapper{
+	width: 966px;
+	text-align: center;
+	margin: 0 auto;
+}
+header > nav {
+	text-align: center;
+	background-color: #ec13f4;
+}
+	
+header > nav > ul {
+	padding: 30 0px;
+
+}
+header > nav > ul > li {
+	display:inline;
+	margin: 0 100px;
+}
+
+header > nav > ul > li > a {
+	text-decoration:none;
+	font-size: 39px;
+	color: #fff;
+	font-weight:bolder;
+}
+
+header > nav > ul > li > a:hover {
+	color: #555;
+}
+
+section{
+
+}
+
+section.player, section.dealer{
+	width: 483px;
+	float: left;
+}
+
+div.dealerScore > h1, div.playerScore > h1{
+	font-size: 34px;
+}
+figure > img {
+	height: 255px;
+}
+figure{
+	height: 285px;
+}
+
+section.controls{
+	float: left;
+	width: 100%;
+	margin-bottom:25px;
+}
+
+section.controls > button {
+	background-color: #e87510;
+	float:right;
+	height:45px;
+	width:175px;
+	font-weight: bolder;
+	font-size: larger;
+}
+
+footer {
+	text-align: right;
+}
+	
+footer > ul > li {
+	text-decoration:none;
+	display:inline;
+	margin-left: 50px;
+	margin-right: 15px;
+}
