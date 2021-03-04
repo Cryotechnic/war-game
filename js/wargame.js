@@ -10,6 +10,8 @@
 var usedCards = []; 
 playerImg = document.createElement('img');
 dealerImg = document.createElement('img');
+playerScore = 0;
+dealerScore = 0;
 
 // FIXME: Array should be empty and then populated with the values as they get generated
 
@@ -50,8 +52,8 @@ function assignCards() {
 }
 
 function pointCount() {
-    document.getElementsByTagName("h1")[1].innerHTML = playerDeck.length;
-    document.getElementsByTagName("h1")[3].innerHTML = dealerDeck.length;
+    document.getElementsByTagName("h1")[1].innerHTML = playerScore;
+    document.getElementsByTagName("h1")[3].innerHTML = dealerScore;
 }
 
 function dealCards() {
