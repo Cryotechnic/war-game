@@ -1,11 +1,15 @@
 
 // Initializing variables
-var playerDeck = [];
-dealerDeck = [];
-playerCard = [];
-dealerHand = [];
-userScore = 0;
-dealerScore = 0;
+// var playerDeck = [];
+// dealerDeck = [];
+// playerCard = [];
+// dealerHand = [];
+// userScore = 0;
+// dealerScore = 0;
+
+var usedCards = []; 
+playerImg = document.createElement('img');
+dealerImg = document.createElement('img');
 
 // FIXME: Array should be empty and then populated with the values as they get generated
 
@@ -25,13 +29,14 @@ dealerScore = 0;
  * then reassigning each deck's value (deck i and deck j) to the random value computed with j
  */
 
-function shuffleDeck(cardDeck) {
-    var cardDeck = arrayGen();
-    
-    for (var j, x, i = cardDeck.length; i; j = Math.floor(Math.random() * i), 
-    x = cardDeck[--i], cardDeck[i] = cardDeck[j], cardDeck[j] = x); 
+function randomCard(max = 52, min = 1) {
+    var rand = Math.random();
+    rand *= (max - min) + 1;
+    rand = Math.floor(rand);
+    rand += min;
 
-    return cardDeck;
+    if (usedCards.indexOf(rand) > 0) {return randomCard(52);}
+    else {usedCards.push(rand); return rand;}
 }
 
 /**
@@ -39,15 +44,15 @@ function shuffleDeck(cardDeck) {
  * @param {cards} cardDeck 
  */
 function assignCards(cardDeck) {
-    var cardDeck = shuffleDeck();
-    var i = 0;
+    // var cardDeck = shuffleDeck();
+    // var i = 0;
 
-    while (i != cardDeck.length) {
-        playerDeck.push(cardDeck[i]);
-        dealerDeck.push(cardDeck[i + 1]);
-        i+=2;
+    // while (i != cardDeck.length) {
+    //     playerDeck.push(cardDeck[i]);
+    //     dealerDeck.push(cardDeck[i + 1]);
+    //     i+=2;
         
-    }
+    // }
     // Output to user
     document.getElementsByTagName("figure")[0].innerHTML = "<img src='img/back.png'/>";
     document.getElementsByTagName("figure")[1].innerHTML = "<img src='img/back.png'/>";
@@ -60,32 +65,21 @@ function pointCount() {
     document.getElementsByTagName("h1")[3].innerHTML = dealerDeck.length;
 }
 
-function dealCards(playerDeck, dealerDeck) {
-    // Set a card for both player & dealer
-    playerCard = assignCards(playerDeck);
-    playerDeck[0];
+function dealCards() {
 
-    dealerCard = assignCards(dealerDeck);
-    
-    //console.log(assignCards(playerDeck));
-
-     // Start at 0 for pos 1
-    //var dealerHand = dealerDeck[0];
-    console.log(dealerDeck[0]);
 
     // Prep for image display by creating vars to hold img
-    var card1 = document.getElementsByTagName('figure')[0];
-    var card2 = document.getElementsByTagName('figure')[1];
-
+    
     // Specifying path for images
-    playerImg = document.createElement('img');
-    dealerImg = document.createElement('img');
 
-    playerImg.setAttribute('src', 'img/' + playerDeck[0] + '.png');
-    dealerImg.setAttribute('src', 'img/' + dealerDeck[0] + '.png');
-
+    
+    playerImg.setAttribute('src', 'img/' + randomCard() + '.png');
+    var card1 = document.getElementsByTagName('figure')[0];
     card1.appendChild(playerImg);
+    dealerImg.setAttribute('src', 'img/' + randomCard() + '.png');
+    var card2 = document.getElementsByTagName('figure')[1];
     card2.appendChild(dealerImg);
+
 
     //card1.innerHTML = ("<img src='img/' + playerCard[0] + '.png'/>");
     //card2.innerHTML = ("img/" + dealerCard[0] + ".png");
