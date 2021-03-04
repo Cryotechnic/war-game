@@ -107,7 +107,7 @@ function dealCards() {
         card2.appendChild(dealerImgExtra1);
         card2.appendChild(dealerImgExtra2);
         card2.appendChild(dealerImgExtra3);
-        compare(playerCard, dealerCard);
+        compare(playerCard, dealerCard); // FIXME: implement war method instead of normal compare
         pointCount();
         return [playerCard, dealerCard];
     }
@@ -125,4 +125,8 @@ function compare(playerCard, dealerCard) {
     } else {
         console.log("tie");
     }
+}
+
+function checkWin() {
+    
 }
