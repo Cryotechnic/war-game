@@ -29,7 +29,7 @@ dealerImg = document.createElement('img');
  * then reassigning each deck's value (deck i and deck j) to the random value computed with j
  */
 
-function randomCard(max = 52, min = 1) {
+function randomCard(max = 5, min = 1) {
     var rand = Math.random();
     rand = rand * (max - min + 1);
     rand = Math.floor(rand);
@@ -69,6 +69,7 @@ function dealCards() {
     dealerImg.setAttribute('src', 'img/' + dealerCard + '.png');
 
     // Overwrites element if it already exists, appends if it doesn't
+    //pointCount();
     card1.appendChild(playerImg);
     card2.appendChild(dealerImg);
 
@@ -103,8 +104,10 @@ function dealCards() {
         card2.appendChild(dealerImgExtra1);
         card2.appendChild(dealerImgExtra2);
         card2.appendChild(dealerImgExtra3);
+        //pointCount();
     }
 }
 
 function compare() {
+
 }
