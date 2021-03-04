@@ -31,33 +31,22 @@ dealerImg = document.createElement('img');
 
 function randomCard(max = 52, min = 1) {
     var rand = Math.random();
-    rand *= (max - min) + 1;
+    rand = rand * (max - min + 1);
     rand = Math.floor(rand);
-    rand += min;
+    rand = rand + min;
 
-    if (usedCards.indexOf(rand) > 0) {return randomCard(52);}
-    else {usedCards.push(rand); return rand;}
+    if (usedCards.indexOf(rand) > 0) {console.log("did this " + rand);return randomCard(52);}
+    else {usedCards.push(rand); console.log(usedCards);return rand;}
 }
 
 /**
  * Assigns the cards in the deck to each player
  * @param {cards} cardDeck 
  */
-function assignCards(cardDeck) {
-    // var cardDeck = shuffleDeck();
-    // var i = 0;
-
-    // while (i != cardDeck.length) {
-    //     playerDeck.push(cardDeck[i]);
-    //     dealerDeck.push(cardDeck[i + 1]);
-    //     i+=2;
-        
-    // }
+function assignCards() {
     // Output to user
     document.getElementsByTagName("figure")[0].innerHTML = "<img src='img/back.png'/>";
     document.getElementsByTagName("figure")[1].innerHTML = "<img src='img/back.png'/>";
-    return playerDeck, dealerDeck;
-
 }
 
 function pointCount() {
@@ -66,50 +55,56 @@ function pointCount() {
 }
 
 function dealCards() {
+    var playerCard = randomCard(52);
+    dealerCard = randomCard(52);
 
+    console.log(playerCard + " " + dealerCard);
 
     // Prep for image display by creating vars to hold img
+    var card1 = document.getElementsByTagName('figure')[0];
+    var card2 = document.getElementsByTagName('figure')[1];
     
     // Specifying path for images
+    playerImg.setAttribute('src', 'img/' + playerCard + '.png');
+    dealerImg.setAttribute('src', 'img/' + dealerCard + '.png');
 
-    
-    playerImg.setAttribute('src', 'img/' + randomCard() + '.png');
-    var card1 = document.getElementsByTagName('figure')[0];
+    // Overwrites element if it already exists, appends if it doesn't
     card1.appendChild(playerImg);
-    dealerImg.setAttribute('src', 'img/' + randomCard() + '.png');
-    var card2 = document.getElementsByTagName('figure')[1];
     card2.appendChild(dealerImg);
 
+    if (playerCard == dealerCard) {
+        extraPlayer1 = randomCard(52);
+        extraPlayer2 = randomCard(52);
+        extraPlayer3 = randomCard(52);
+        extraDealer1 = randomCard(52);
+        extraDealer2 = randomCard(52);
+        extraDealer3 = randomCard(52);
 
-    //card1.innerHTML = ("<img src='img/' + playerCard[0] + '.png'/>");
-    //card2.innerHTML = ("img/" + dealerCard[0] + ".png");
+        playerImgExtra1 = document.createElement('img');
+        playerImgExtra2 = document.createElement('img');
+        playerImgExtra3 = document.createElement('img');
+        
+        dealerImgExtra1 = document.createElement('img');
+        dealerImgExtra2 = document.createElement('img');
+        dealerImgExtra3 = document.createElement('img');
 
-    // Displays cards to both users
-    //$('.card1').append(card1);
-    //$('.card2').append(card2);
+        playerImgExtra1.setAttribute('src', 'img/' + extraPlayer1 + '.png');
+        playerImgExtra2.setAttribute('src', 'img/' + extraPlayer2 + '.png');
+        playerImgExtra3.setAttribute('src', 'img/' + extraPlayer3 + '.png');
+        
+        dealerImgExtra1.setAttribute('src', 'img/' + extraDealer1 + '.png');
+        dealerImgExtra2.setAttribute('src', 'img/' + extraDealer2 + '.png');
+        dealerImgExtra3.setAttribute('src', 'img/' + extraDealer3 + '.png');
+
+        card1.appendChild(playerImgExtra1);
+        card1.appendChild(playerImgExtra2);
+        card1.appendChild(playerImgExtra3);
+
+        card2.appendChild(dealerImgExtra1);
+        card2.appendChild(dealerImgExtra2);
+        card2.appendChild(dealerImgExtra3);
+    }
 }
 
-function compare(player, dealer) {
-    if ((player % 13) > (dealer % 13)) {
-        console.log("Player wins!"); //FIXME: Add proper output to user
-
-        playerDeck.push(dealer);
-        playerDeck.push(player);
-
-        playerDeck.shift();
-        dealerDeck.shift();
-
-        pointCount();
-        // ADDME: check for victory condition
-    } else if ((player % 13) < (dealer % 13)) {
-        console.log("Dealer wins!");
-
-        dealerDeck.push(player);
-        dealerDeck.push(dealer);
-
-        playerDeck.shift();
-        dealerDeck.shift();
-
-        pointCount();
-    }
+function compare() {
 }
