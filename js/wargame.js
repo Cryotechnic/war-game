@@ -31,8 +31,8 @@ function randomCard(max = 52, min = 1) {
  */
 function assignCards() {
     // Output to user
-    document.getElementsByTagName("figure")[0].innerHTML = "<img src='img/back.png'/>";
-    document.getElementsByTagName("figure")[1].innerHTML = "<img src='img/back.png'/>";
+    document.getElementsByTagName('figure')[0].innerHTML = "<img src='img/back.png'/>";
+    document.getElementsByTagName('figure')[1].innerHTML = "<img src='img/back.png'/>";
 }
 
 function pointCount() {
@@ -59,8 +59,11 @@ function dealCards() {
     pointCount();
     card1.appendChild(playerImg);
     card2.appendChild(dealerImg);
+    tie(playerCard, dealerCard);
+}
 
-    if (playerCard == dealerCard) {
+function tie(playerCard, dealerCard) {
+    if (playerCard == dealerCard || (playerCard % 13) == (dealerCard % 13)) {
         // Instantiation of 6 new cards
         extraPlayer1 = randomCard(52);
         extraPlayer2 = randomCard(52);
@@ -120,15 +123,30 @@ function dealCards() {
         pointCount();
         return [playerCard, dealerCard, card1, card2]; // TESTME: Test to see if return is required
     }
+
 }
 
 function compare(playerCard, dealerCard) {
     //removeExtra();
     if ((playerCard % 13) > (dealerCard % 13)) {
+        if (playerCard == 1 || playerCard == 11 || playerCard == 12 || playerCard == 13 || playerCard == 14
+             || playerCard == 24 || playerCard == 25 || playerCard == 26 || playerCard == 27
+              || playerCard == 37 || playerCard == 38 || playerCard == 39 || 
+              playerCard == 40 || playerCard == 50 || playerCard == 51 || playerCard == 52){
+                console.log(playerCard);  
+                playerCard = 10;
+              }
         console.log("player won"); // Implement proper formatting
         console.log(playerCard); // Implement proper formatting
         playerScore++; 
     } else if ((playerCard % 13) < (dealerCard % 13)) {
+        if (dealerCard == 1 || dealerCard == 11 || dealerCard == 12 || dealerCard == 13 || dealerCard == 14
+            || dealerCard == 24 || dealerCard == 25 || dealerCard == 26 || dealerCard == 27
+             || dealerCard == 37 || dealerCard == 38 || dealerCard == 39 || 
+             dealerCard == 40 || dealerCard == 50 || dealerCard == 51 || dealerCard == 52) {
+                 console.log(dealerCard);
+                 dealerCard = 10;
+             }
         console.log("dealer won"); // Implement proper formatting
         console.log(dealerCard); // Implement proper formatting
         dealerScore++;
