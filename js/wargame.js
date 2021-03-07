@@ -144,12 +144,10 @@ function compare(playerCard, dealerCard) {
         console.log("player won"); // Implement proper formatting
         console.log(playerCard); // Implement proper formatting
         playerScore++; 
-        //checkWin();
     } else if ((playerCard % 13) < (dealerCard % 13)) {
         console.log("dealer won"); // Implement proper formatting
         console.log(dealerCard); // Implement proper formatting
         dealerScore++;
-        //checkWin();
     } else {
         console.log("tie");
     }
