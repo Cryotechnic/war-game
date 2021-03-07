@@ -116,10 +116,12 @@ function dealCards() {
 function compare(playerCard, dealerCard) {
     if (playerCard > dealerCard) {
         console.log("player won"); // Implement proper formatting
+        console.log(playerCard); // Implement proper formatting
         playerScore++; 
         //checkWin();
     } else if (playerCard < dealerCard) {
         console.log("dealer won"); // Implement proper formatting
+        console.log(dealerCard); // Implement proper formatting
         dealerScore++;
         //checkWin();
     } else {
