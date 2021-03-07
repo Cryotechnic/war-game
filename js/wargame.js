@@ -77,6 +77,7 @@ function dealCards() {
     card2.appendChild(dealerImg);
 
     if (playerCard == dealerCard) {
+        // Instantiation of 6 new cards
         extraPlayer1 = randomCard(52);
         extraPlayer2 = randomCard(52);
         extraPlayer3 = randomCard(52);
@@ -84,9 +85,11 @@ function dealCards() {
         extraDealer2 = randomCard(52);
         extraDealer3 = randomCard(52);
 
+        // Set height to 140 to account for image spacing
         playerImg.style.height = "140px";
         dealerImg.style.height = "140px";
 
+        // Definition of 6 extra cards with styling and ID
         playerImgExtra1 = document.createElement('img');
         playerImgExtra1.setAttribute('id', 'playerImgExtra1');
         playerImgExtra1.style.height = "140px";
@@ -111,6 +114,7 @@ function dealCards() {
         dealerImgExtra3.setAttribute('id', 'dealerImgExtra3');
         dealerImgExtra3.style.height = "140px";
 
+        // Retrieve selected images from image bank
         playerImgExtra1.setAttribute('src', 'img/' + extraPlayer1 + '.png');
         playerImgExtra2.setAttribute('src', 'img/' + extraPlayer2 + '.png');
         playerImgExtra3.setAttribute('src', 'img/' + extraPlayer3 + '.png');
@@ -119,15 +123,15 @@ function dealCards() {
         dealerImgExtra2.setAttribute('src', 'img/' + extraDealer2 + '.png');
         dealerImgExtra3.setAttribute('src', 'img/' + extraDealer3 + '.png');
 
+        // Display to user
         card1.appendChild(playerImgExtra1);
         card1.appendChild(playerImgExtra2);
         card1.appendChild(playerImgExtra3);
-        //card1.style.cssText = 'height: 140px !important';
 
         card2.appendChild(dealerImgExtra1);
         card2.appendChild(dealerImgExtra2);
         card2.appendChild(dealerImgExtra3);
-        //card2.style.height = "140px";
+
         compare(playerCard, dealerCard); // FIXME: implement war method instead of normal compare
         pointCount();
         return [playerCard, dealerCard, card1, card2]; // TESTME: Test to see if return is required
