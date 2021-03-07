@@ -109,7 +109,7 @@ function dealCards() {
         card2.appendChild(dealerImgExtra3);
         compare(playerCard, dealerCard); // FIXME: implement war method instead of normal compare
         pointCount();
-        return [playerCard, dealerCard];
+        return [playerCard, dealerCard]; // TESTME: Test to see if return is required
     }
 }
 
@@ -128,5 +128,12 @@ function compare(playerCard, dealerCard) {
 }
 
 function checkWin() {
-    
+    //winDealer = document.getElementsByTagName('section')[1].style.borderStyle = "solid";
+    console.log(usedCards.length);
+    console.log(playerScore + " " + dealerScore);
+    if (playerScore > dealerScore && usedCards.length >= 2) {
+        console.log("Player has won!");
+        winPlayer = document.getElementsByTagName('section')[0].style.borderStyle = "solid";
+        winPlayer.style.borderColor = "green";
+    }
 }
