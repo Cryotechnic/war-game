@@ -130,27 +130,30 @@ function compare(playerCard, dealerCard) {
     }
 }
 
+function removeExtra(card1, card2) {
+    console.log(card1);
+    console.log(card2);
+    card1.innerHTML = "";
+    card2.innerHTML = "";
+}
+
 function checkWin() {
     //winDealer = document.getElementsByTagName('section')[1].style.borderStyle = "solid";
     console.log(usedCards.length);
     console.log(playerScore + " " + dealerScore);
+    document.getElementsByTagName('h1')[1].setAttribute('id', "winPlayer");
+    document.getElementsByTagName('h1')[3].setAttribute('id', 'winDealer');
     if (playerScore > dealerScore && usedCards.length >= 2) {
         console.log("Player has won!");
-        winPlayer = document.getElementsByTagName('section')[0].style.borderStyle = "solid";
-        winPlayer = document.getElementsByTagName('section')[0].style.borderColor = "green";
-        winplayer = document.getElementsByTagName('section')[0].style.width = "241.5px";
+        winPlayer.style.cssText = "color: green";
         console.log(winPlayer);
     } else if (playerScore < dealerScore && usedCards.length >= 2) {
         console.log("Dealer has won!");
-        winDealer = document.getElementsByTagName('section')[1].style.borderStyle = "solid";
-        winDealer = document.getElementsByTagName('section')[1].style.borderColor = "green";
-        winDealer.style.position = "absolute";
+        winDealer.style.cssText = "color: green"
         console.log(winDealer);
     } else {
         console.log("It's a tie!");
-        winPlayer = document.getElementsByTagName('section')[0].style.borderStyle = "solid";
-        winPlayer = document.getElementsByTagName('section')[0].style.borderColor = "red";
-        winDealer = document.getElementsByTagName('section')[1].style.borderStyle = "solid";
-        winDealer = document.getElementsByTagName('section')[1].style.borderColor = "red";
+        winPlayer.style.cssText = "color: red";
+        winDealer.style.cssText = "color: red"; 
     }
 }
