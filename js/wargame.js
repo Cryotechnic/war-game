@@ -141,14 +141,19 @@ function checkWin() {
     //winDealer = document.getElementsByTagName('section')[1].style.borderStyle = "solid";
     console.log(usedCards.length);
     console.log(playerScore + " " + dealerScore);
+    document.getElementsByTagName('button')[0].disabled = true;
     document.getElementsByTagName('h1')[1].setAttribute('id', "winPlayer");
     document.getElementsByTagName('h1')[3].setAttribute('id', 'winDealer');
+    document.getElementsByTagName('h1')[0].setAttribute('id', "textPlayer");
+    document.getElementsByTagName('h1')[2].setAttribute('id', 'textDealer');
     if (playerScore > dealerScore && usedCards.length >= 2) {
         console.log("Player has won!");
+        textPlayer.innerHTML = "Player has won the hand";
         winPlayer.style.cssText = "color: green";
         console.log(winPlayer);
     } else if (playerScore < dealerScore && usedCards.length >= 2) {
         console.log("Dealer has won!");
+        textDealer.innerHTML = "Dealer has won the hand";
         winDealer.style.cssText = "color: green"
         console.log(winDealer);
     } else {
