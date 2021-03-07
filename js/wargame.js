@@ -1,35 +1,10 @@
 
 // Initializing variables
-// var playerDeck = [];
-// dealerDeck = [];
-// playerCard = [];
-// dealerHand = [];
-// userScore = 0;
-// dealerScore = 0;
-
 var usedCards = []; 
 playerImg = document.createElement('img');
 dealerImg = document.createElement('img');
 playerScore = 0;
 dealerScore = 0;
-
-// FIXME: Array should be empty and then populated with the values as they get generated
-
-/**
- * Generates an array of 52 numbers (1-52)
- */
-// function arrayGen() {
-//     var cardDeck = [];
-//     for (var i = 0; i < 52; i++) {
-//         cardDeck[i] = i;
-//     }
-//     return cardDeck;
-// }
-
-/**
- * Shuffles the deck by randomizing the j value using the deck length,
- * then reassigning each deck's value (deck i and deck j) to the random value computed with j
- */
 
 function randomCard(max = 5, min = 1) {
     var rand = Math.random();
