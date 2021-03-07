@@ -84,18 +84,37 @@ function dealCards() {
         extraDealer2 = randomCard(52);
         extraDealer3 = randomCard(52);
 
+        playerImg.style.height = "140px";
+        dealerImg.style.height = "140px";
+
         playerImgExtra1 = document.createElement('img');
+        playerImgExtra1.setAttribute('id', 'playerImgExtra1');
+        playerImgExtra1.style.height = "140px";
+        
         playerImgExtra2 = document.createElement('img');
+        playerImgExtra2.setAttribute('id', 'playerImgExtra2');
+        playerImgExtra2.style.height = "140px";
+        
         playerImgExtra3 = document.createElement('img');
+        playerImgExtra3.setAttribute('id', 'playerImgExtra3');
+        playerImgExtra3.style.height = "140px";
         
         dealerImgExtra1 = document.createElement('img');
+        dealerImgExtra1.setAttribute('id', 'dealerImgExtra1');
+        dealerImgExtra1.style.height = "140px";
+        
         dealerImgExtra2 = document.createElement('img');
+        dealerImgExtra2.setAttribute('id', 'dealerImgExtra2');
+        dealerImgExtra2.style.height = "140px";
+        
         dealerImgExtra3 = document.createElement('img');
+        dealerImgExtra3.setAttribute('id', 'dealerImgExtra3');
+        dealerImgExtra3.style.height = "140px";
 
         playerImgExtra1.setAttribute('src', 'img/' + extraPlayer1 + '.png');
         playerImgExtra2.setAttribute('src', 'img/' + extraPlayer2 + '.png');
         playerImgExtra3.setAttribute('src', 'img/' + extraPlayer3 + '.png');
-        
+
         dealerImgExtra1.setAttribute('src', 'img/' + extraDealer1 + '.png');
         dealerImgExtra2.setAttribute('src', 'img/' + extraDealer2 + '.png');
         dealerImgExtra3.setAttribute('src', 'img/' + extraDealer3 + '.png');
@@ -103,10 +122,12 @@ function dealCards() {
         card1.appendChild(playerImgExtra1);
         card1.appendChild(playerImgExtra2);
         card1.appendChild(playerImgExtra3);
+        //card1.style.cssText = 'height: 140px !important';
 
         card2.appendChild(dealerImgExtra1);
         card2.appendChild(dealerImgExtra2);
         card2.appendChild(dealerImgExtra3);
+        //card2.style.height = "140px";
         compare(playerCard, dealerCard); // FIXME: implement war method instead of normal compare
         pointCount();
         return [playerCard, dealerCard, card1, card2]; // TESTME: Test to see if return is required
