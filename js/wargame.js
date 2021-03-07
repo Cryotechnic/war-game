@@ -136,6 +136,20 @@ function checkWin() {
     if (playerScore > dealerScore && usedCards.length >= 2) {
         console.log("Player has won!");
         winPlayer = document.getElementsByTagName('section')[0].style.borderStyle = "solid";
-        winPlayer.style.borderColor = "green";
+        winPlayer = document.getElementsByTagName('section')[0].style.borderColor = "green";
+        winplayer = document.getElementsByTagName('section')[0].style.width = "241.5px";
+        console.log(winPlayer);
+    } else if (playerScore < dealerScore && usedCards.length >= 2) {
+        console.log("Dealer has won!");
+        winDealer = document.getElementsByTagName('section')[1].style.borderStyle = "solid";
+        winDealer = document.getElementsByTagName('section')[1].style.borderColor = "green";
+        winDealer.style.position = "absolute";
+        console.log(winDealer);
+    } else {
+        console.log("It's a tie!");
+        winPlayer = document.getElementsByTagName('section')[0].style.borderStyle = "solid";
+        winPlayer = document.getElementsByTagName('section')[0].style.borderColor = "red";
+        winDealer = document.getElementsByTagName('section')[1].style.borderStyle = "solid";
+        winDealer = document.getElementsByTagName('section')[1].style.borderColor = "red";
     }
 }
