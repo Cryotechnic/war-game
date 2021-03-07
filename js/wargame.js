@@ -109,17 +109,18 @@ function dealCards() {
         card2.appendChild(dealerImgExtra3);
         compare(playerCard, dealerCard); // FIXME: implement war method instead of normal compare
         pointCount();
-        return [playerCard, dealerCard]; // TESTME: Test to see if return is required
+        return [playerCard, dealerCard, card1, card2]; // TESTME: Test to see if return is required
     }
 }
 
 function compare(playerCard, dealerCard) {
-    if (playerCard > dealerCard) {
+    //removeExtra();
+    if ((playerCard % 13) > (dealerCard % 13)) {
         console.log("player won"); // Implement proper formatting
         console.log(playerCard); // Implement proper formatting
         playerScore++; 
         //checkWin();
-    } else if (playerCard < dealerCard) {
+    } else if ((playerCard % 13) < (dealerCard % 13)) {
         console.log("dealer won"); // Implement proper formatting
         console.log(dealerCard); // Implement proper formatting
         dealerScore++;
