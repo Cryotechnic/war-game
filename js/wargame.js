@@ -6,7 +6,16 @@ dealerImg = document.createElement('img');
 playerScore = 0;
 dealerScore = 0;
 
-function randomCard(max = 5, min = 1) {
+// FIXME: Further test J, Q, K & Ace to see if they match parameters
+
+document.onload = assignCards(); // FIXME: innerHtml undefined
+
+/**
+ * Generates random number in range
+ * @param {*} max maximum number 
+ * @param {*} min minimum number
+ */
+function randomCard(max = 52, min = 1) {
     var rand = Math.random();
     rand = rand * (max - min + 1);
     rand = Math.floor(rand);
