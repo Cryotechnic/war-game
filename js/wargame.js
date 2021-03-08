@@ -49,7 +49,7 @@ function pointCount() {
  */
 function dealCards() {
     var playerCard = randomCard(52);
-    dealerCard = randomCard(52);
+    var dealerCard = randomCard(52);
 
 
     // Prep for image display by creating vars to hold img & making sure they are properly formatted
@@ -59,8 +59,8 @@ function dealCards() {
     card1.innerHTML = "";
     card2.innerHTML = "";
 
-    // card1.style.height = "255px";
-    // card2.style.height = "255px";
+    card1.style.height = "285px";
+    card2.style.height = "285px";
     
     // Specifying path for images
     playerImg.setAttribute('src', 'img/' + playerCard + '.png');
@@ -82,7 +82,9 @@ function dealCards() {
     return [playerCard, dealerCard, card1, card2];
 }
 
-function tie(playerCard, dealerCard, card1, card2) {
+function tie(playerCard, dealerCard) {
+    var card1 = document.getElementsByTagName('figure')[0];
+    var card2 = document.getElementsByTagName('figure')[1];
     if (playerCard == dealerCard || (playerCard % 13) == (dealerCard % 13)) {
         // Instantiation of 6 new cards
         extraPlayer1 = randomCard(52);
@@ -203,12 +205,30 @@ function compare(playerCard, dealerCard) {
     }
 }
 
+function compare(playerCard, dealerCard) {
+    console.log("COMPARE " + playerCard + " " + dealerCard);
+    var playerVal = calcValue(playerCard);
+    var dealerVal = calcValue(dealerCard);
+    console.log(playerVal + " " + dealerVal);
+    if (playerVal > dealerVal) {
+        console.log(playerCard);
+        playerScore++;
+    } else if (playerVal < dealerVal) {
+        console.log(dealerCard);
+        dealerScore++;
+    } else {
+        tie(playerVal, dealerVal);
+    }
+}
+
 function calcValue(number) {
     var value = (number % 13);
 
     if (value == 0) {
+        console.log(value);
         value = 10;
     } else if (value > 10) {
+        console.log(value);
         value = 10;
     }
     return value;
