@@ -154,7 +154,7 @@ function tie(playerCard, dealerCard) {
  * @param {*} playerCard distributed player card
  * @param {*} dealerCard distributed dealer card
  */
-function compare(playerCard, dealerCard) {
+function compare1(playerCard, dealerCard) {
     if ((playerCard % 13) > (dealerCard % 13) || playerCard > dealerCard) {
         if (playerCard == 11 || playerCard == 12 || playerCard == 13
             || playerCard == 24 || playerCard == 25 || playerCard == 26
@@ -239,13 +239,13 @@ function calcValue(number) {
  * @param {*} playerImgExtra3 
  * @param {*} dealerImgExtra3 
  */
-function compareWar(playerImgExtra3, dealerImgExtra3) {
-    //compare(playerImgExtra3, dealerImgExtra3);
-    if (playerImgExtra3 == dealerImgExtra3 || (playerImgExtra3 % 13) == (dealerImgExtra3 % 13)) {
-        tie(playerImgExtra3, dealerImgExtra3);
-    }
+// function compareWar(playerImgExtra3, dealerImgExtra3) {
+//     //compare(playerImgExtra3, dealerImgExtra3);
+//     if (playerImgExtra3 == dealerImgExtra3 || (playerImgExtra3 % 13) == (dealerImgExtra3 % 13)) {
+//         tie(playerImgExtra3, dealerImgExtra3);
+//     }
 
-}
+// }
 
 function removeExtra(card1, card2) {
     console.log(card1);
