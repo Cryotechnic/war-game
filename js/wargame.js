@@ -36,34 +36,53 @@ function assignCards() {
     document.getElementsByTagName('figure')[1].innerHTML = "<img src='img/back.png'/>";
 }
 
+/**
+ * Displays the playerScore and dealerScore variables, updating them as they increase
+ */
 function pointCount() {
     document.getElementsByTagName("h1")[1].innerHTML = playerScore;
     document.getElementsByTagName("h1")[3].innerHTML = dealerScore;
 }
 
+/**
+ * Deals the cards and displays them to the players
+ */
 function dealCards() {
     var playerCard = randomCard(52);
     dealerCard = randomCard(52);
 
-    console.log(playerCard + " " + dealerCard);
 
-    // Prep for image display by creating vars to hold img
+    // Prep for image display by creating vars to hold img & making sure they are properly formatted
     var card1 = document.getElementsByTagName('figure')[0];
     var card2 = document.getElementsByTagName('figure')[1];
+
+    card1.innerHTML = "";
+    card2.innerHTML = "";
+
+    // card1.style.height = "255px";
+    // card2.style.height = "255px";
     
     // Specifying path for images
     playerImg.setAttribute('src', 'img/' + playerCard + '.png');
     dealerImg.setAttribute('src', 'img/' + dealerCard + '.png');
 
-    // Overwrites element if it already exists, appends if it doesn't
+    
+    // Compares both cards to see who has the greater value and updates the point count 
+    // for both players
     compare(playerCard, dealerCard);
     pointCount();
+    
+    // Display cards to players
+    // Overwrites element if it already exists, appends if it doesn't
     card1.appendChild(playerImg);
     card2.appendChild(dealerImg);
-    tie(playerCard, dealerCard);
+
+    // Check if the cards values are tied
+    tie(playerCard, dealerCard, card1, card2);
+    return [playerCard, dealerCard, card1, card2];
 }
 
-function tie(playerCard, dealerCard) {
+function tie(playerCard, dealerCard, card1, card2) {
     if (playerCard == dealerCard || (playerCard % 13) == (dealerCard % 13)) {
         // Instantiation of 6 new cards
         extraPlayer1 = randomCard(52);
@@ -120,51 +139,104 @@ function tie(playerCard, dealerCard) {
         card2.appendChild(dealerImgExtra2);
         card2.appendChild(dealerImgExtra3);
 
-        compare(playerCard, dealerCard); // FIXME: implement war method instead of normal compare
+        // Compare war cards & update point count
+        compare(playerImgExtra3, dealerImgExtra3); // FIXME: implement war method instead of normal compare
         pointCount();
+
         return [playerCard, dealerCard, card1, card2]; // TESTME: Test to see if return is required
     }
-
 }
 
+/**
+ * Compares card values
+ * @param {*} playerCard distributed player card
+ * @param {*} dealerCard distributed dealer card
+ */
 function compare(playerCard, dealerCard) {
-    //removeExtra();
-    if ((playerCard % 13) > (dealerCard % 13)) {
-        if (playerCard == 1 || playerCard == 11 || playerCard == 12 || playerCard == 13 || playerCard == 14
-             || playerCard == 24 || playerCard == 25 || playerCard == 26 || playerCard == 27
-              || playerCard == 37 || playerCard == 38 || playerCard == 39 || 
-              playerCard == 40 || playerCard == 50 || playerCard == 51 || playerCard == 52){
-                console.log(playerCard);  
-                playerCard = 10;
-              }
+    if ((playerCard % 13) > (dealerCard % 13) || playerCard > dealerCard) {
+        if (playerCard == 11 || playerCard == 12 || playerCard == 13
+            || playerCard == 24 || playerCard == 25 || playerCard == 26
+             || playerCard == 37 || playerCard == 38 || playerCard == 39 || 
+              playerCard == 50 || playerCard == 51 || playerCard == 52) {
+                  playerCard = 100;
+                if (playerCard == 1 || playerCard == 14 || playerCard == 27 || playerCard == 40) {
+                    playerCard = 1
+                }  
+                // Checks if there is War between player & dealer
+                if (playerCard == dealerCard) {
+                      console.log(playerCard);  
+                      playerCard = 10;
+                      compare(playerCard, dealerCard);
+                    }
+                }
+                //playerCard = 10;
         console.log("player won"); // Implement proper formatting
         console.log(playerCard); // Implement proper formatting
+        console.log(dealerCard); // Implement proper formatting
         playerScore++; 
-    } else if ((playerCard % 13) < (dealerCard % 13)) {
-        if (dealerCard == 1 || dealerCard == 11 || dealerCard == 12 || dealerCard == 13 || dealerCard == 14
-            || dealerCard == 24 || dealerCard == 25 || dealerCard == 26 || dealerCard == 27
-             || dealerCard == 37 || dealerCard == 38 || dealerCard == 39 || 
-             dealerCard == 40 || dealerCard == 50 || dealerCard == 51 || dealerCard == 52) {
-                 console.log(dealerCard);
-                 dealerCard = 10;
-             }
+    } else if ((playerCard % 13) < (dealerCard % 13) || playerCard < dealerCard) {
+        if (dealerCard == 11 || dealerCard == 12 || dealerCard == 13 || 
+            dealerCard == 24 || dealerCard == 25 || dealerCard == 26
+            || dealerCard == 37 || dealerCard == 38 || dealerCard == 39 || 
+            dealerCard == 50 || dealerCard == 51 || dealerCard == 52) {
+                dealerCard = 100;
+                if (playerCard == 1 || playerCard == 14 || playerCard == 27 || playerCard == 40) {
+                    playerCard = 1
+                }
+                if (dealerCard == playerCard) {
+                    console.log("dealer: " + dealerCard + " " + playerCard);
+                    console.log(dealerCard);
+                    dealerCard = 10;
+                    compare(playerCard, dealerCard);
+                    }
+                }
+                //dealerCard = 10;
         console.log("dealer won"); // Implement proper formatting
         console.log(dealerCard); // Implement proper formatting
+        console.log(playerCard); // Implement proper formatting
         dealerScore++;
     } else {
+        // FIXME: Should there be a nested if-loop if this is already checking for tie?
+        // Executes War function if none of the parameters match
         console.log("tie");
+        tie(playerCard, dealerCard);
     }
+}
+
+function calcValue(number) {
+    var value = (number % 13);
+
+    if (value == 0) {
+        value = 10;
+    } else if (value > 10) {
+        value = 10;
+    }
+    return value;
+}
+
+/**
+ * 
+ * @param {*} playerImgExtra3 
+ * @param {*} dealerImgExtra3 
+ */
+function compareWar(playerImgExtra3, dealerImgExtra3) {
+    //compare(playerImgExtra3, dealerImgExtra3);
+    if (playerImgExtra3 == dealerImgExtra3 || (playerImgExtra3 % 13) == (dealerImgExtra3 % 13)) {
+        tie(playerImgExtra3, dealerImgExtra3);
+    }
+
 }
 
 function removeExtra(card1, card2) {
     console.log(card1);
     console.log(card2);
-    card1.innerHTML = "";
-    card2.innerHTML = "";
+    document.getElementsByTagName('figure')[0].innerHTML = "<img src='img/back.png'/>";
+    document.getElementsByTagName('figure')[1].innerHTML = "<img src='img/back.png'/>";
+    // card1.innerHTML = "";
+    // card2.innerHTML = "";
 }
 
 function checkWin() {
-    //winDealer = document.getElementsByTagName('section')[1].style.borderStyle = "solid";
     console.log(usedCards.length);
     console.log(playerScore + " " + dealerScore);
     document.getElementsByTagName('button')[0].disabled = true;
