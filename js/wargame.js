@@ -1,4 +1,3 @@
-
 // Initializing variables
 var usedCards = []; 
 playerImg = document.createElement('img');
@@ -7,8 +6,10 @@ playerScore = 0;
 dealerScore = 0;
 
 // FIXME: Further test J, Q, K & Ace to see if they match parameters
+// FIXME: Some methods use returns, others just pass on their parameters, test to see if you can get away with not using return
+// FIXME: Create img tags before modifying attributes
 
-document.onload = assignCards(); // FIXME: innerHtml undefined
+// document.window.onload = assignCards(); // FIXME: innerHtml undefined
 
 /**
  * Generates random number in range
