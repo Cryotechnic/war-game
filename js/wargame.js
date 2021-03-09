@@ -134,26 +134,33 @@ function tie(playerCard, dealerCard) {
         card2.appendChild(dealerImgExtra2);
         card2.appendChild(dealerImgExtra3);
 
-        var playerVal = calcValue(playerImgExtra3);
-        var dealerVal = calcValue(dealerImgExtra3);
-        // Compare war cards & update point count
-        compare(playerVal, dealerVal);
-        pointCount();
+        var playerValExtra = calcValue(playerImgExtra3);
+        var dealerValExtra = calcValue(dealerImgExtra3);
 
+        console.log("extra player cards: " + extraPlayer1 + " " + extraPlayer2 + " " + extraPlayer3);
+        console.log("extra dealer cards: " + extraDealer1 + " " + extraDealer2 + " " + extraDealer3);
+        console.log("Calc Extra Player: " + playerValExtra); // RETURNS NAN
+        console.log("Calc Extra Dealer: " + dealerValExtra);
+        
+        //console.log("extra dealer 3: " + extraDealer3);
+        // Compare war cards & update point count
+        compare(playerValExtra, dealerValExtra);
+        pointCount();
         //return [playerCard, dealerCard, card1, card2]; // TESTME: Test to see if return is required
     }
 }
 
 function compare(playerVal, dealerVal) {
-    //console.log("COMPARE " + playerCard + " " + dealerCard);
     console.log("player value: " + playerVal);
     console.log("dealer value: " + dealerVal);
     if (playerVal > dealerVal) {
         //console.log(playerCard);
         playerScore++;
+        console.log("PLAYER SCORE: " + playerScore);
     } else if (playerVal < dealerVal) {
         //console.log(dealerCard);
         dealerScore++;
+        console.log("DEALER SCORE: " + dealerScore);
     } else {
         tie(playerVal, dealerVal);
     }
