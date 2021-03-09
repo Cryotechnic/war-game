@@ -51,13 +51,14 @@ function dealCards() {
     var playerCard = randomCard(52);
     var dealerCard = randomCard(52);
 
-
     // Prep for image display by creating vars to hold img & making sure they are properly formatted
     var card1 = document.getElementsByTagName('figure')[0];
     var card2 = document.getElementsByTagName('figure')[1];
 
-    card1.innerHTML = "";
-    card2.innerHTML = "";
+    while (card1.firstChild && card2.firstChild) {
+        card1.removeChild(card1.lastChild);
+        card2.removeChild(card2.lastChild);
+      }
 
     playerImg.style.height = "285px";
     dealerImg.style.height = "285px";
