@@ -249,15 +249,6 @@ function calcValue(number) {
 
 // }
 
-function removeExtra(card1, card2) {
-    console.log(card1);
-    console.log(card2);
-    document.getElementsByTagName('figure')[0].innerHTML = "<img src='img/back.png'/>";
-    document.getElementsByTagName('figure')[1].innerHTML = "<img src='img/back.png'/>";
-    // card1.innerHTML = "";
-    // card2.innerHTML = "";
-}
-
 function checkWin() {
     console.log(usedCards.length);
     console.log(playerScore + " " + dealerScore);
