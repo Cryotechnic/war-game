@@ -77,6 +77,7 @@ function dealCards() {
 
     // Check if the cards values are tied
     tie(playerCard, dealerCard, card1, card2);
+    checkWinTurn();
     //return [playerCard, dealerCard, card1, card2];
 }
 
@@ -197,5 +198,28 @@ function checkWin() {
         console.log("It's a tie!");
         winPlayer.style.cssText = "color: red";
         winDealer.style.cssText = "color: red"; 
+    }
+}
+
+function checkWinTurn() {
+    console.log("CHECKWINTURN: " + usedCards.length);
+    document.getElementsByTagName('h1')[1].setAttribute('id', "winPlayer");
+    document.getElementsByTagName('h1')[3].setAttribute('id', 'winDealer');
+    document.getElementsByTagName('h1')[0].setAttribute('id', "textPlayer");
+    document.getElementsByTagName('h1')[2].setAttribute('id', 'textDealer');
+    if (playerScore > dealerScore && usedCards.length >= 56) {
+        console.log("CHECKWINTURN: Player if ran!");
+        document.getElementsByTagName('button')[0].disabled = true;
+        console.log("Player has won!");
+        textPlayer.innerHTML = "Player has won the hand";
+        winPlayer.style.cssText = "color: green";
+        console.log(winPlayer);
+    } else if (playerScore < dealerScore && usedCards.length >= 56) {
+        console.log("CHECKWINTURN: Dealer if ran!");
+        document.getElementsByTagName('button')[0].disabled = true;
+        console.log("Dealer has won!");
+        textDealer.innerHTML = "Dealer has won the hand";
+        winDealer.style.cssText = "color: green"
+        console.log(winDealer);
     }
 }
