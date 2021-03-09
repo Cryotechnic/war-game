@@ -208,12 +208,14 @@ function compare1(playerCard, dealerCard) {
 function compare(playerCard, dealerCard) {
     console.log("COMPARE " + playerCard + " " + dealerCard);
     var playerVal = calcValue(playerCard);
+    console.log("player value: " + playerVal);
     var dealerVal = calcValue(dealerCard);
+    console.log("dealer value: " + dealerVal);
     console.log(playerVal + " " + dealerVal);
-    if (playerVal > dealerVal) {
+    if (playerVal > dealerVal && playerCard > dealerCard) {
         console.log(playerCard);
         playerScore++;
-    } else if (playerVal < dealerVal) {
+    } else if (playerVal < dealerVal && playerCard < dealerCard) {
         console.log(dealerCard);
         dealerScore++;
     } else {
