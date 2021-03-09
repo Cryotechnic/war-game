@@ -80,7 +80,7 @@ function dealCards() {
 
     // Check if the cards values are tied
     tie(playerCard, dealerCard, card1, card2);
-    return [playerCard, dealerCard, card1, card2];
+    //return [playerCard, dealerCard, card1, card2];
 }
 
 function tie(playerCard, dealerCard) {
@@ -196,7 +196,6 @@ function calcValue(number) {
 
 function checkWin() {
     console.log(usedCards.length);
-    console.log(playerScore + " " + dealerScore);
     document.getElementsByTagName('button')[0].disabled = true;
     document.getElementsByTagName('h1')[1].setAttribute('id', "winPlayer");
     document.getElementsByTagName('h1')[3].setAttribute('id', 'winDealer');
