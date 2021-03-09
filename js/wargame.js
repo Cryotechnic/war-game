@@ -5,11 +5,8 @@ dealerImg = document.createElement('img');
 playerScore = 0;
 dealerScore = 0;
 
-// FIXME: Further test J, Q, K & Ace to see if they match parameters
 // FIXME: Some methods use returns, others just pass on their parameters, test to see if you can get away with not using return
 // FIXME: Create img tags before modifying attributes
-
-// document.window.onload = assignCards(); // FIXME: innerHtml undefined
 
 /**
  * Generates random number in range
@@ -87,6 +84,7 @@ function tie(playerCard, dealerCard) {
     var card1 = document.getElementsByTagName('figure')[0];
     var card2 = document.getElementsByTagName('figure')[1];
     if (playerCard == dealerCard || (playerCard % 13) == (dealerCard % 13)) {
+
         // Instantiation of 6 new cards
         extraPlayer1 = randomCard(52);
         extraPlayer2 = randomCard(52);
@@ -101,27 +99,21 @@ function tie(playerCard, dealerCard) {
 
         // Definition of 6 extra cards with styling and ID
         playerImgExtra1 = document.createElement('img');
-        //playerImgExtra1.setAttribute('id', 'playerImgExtra1');
         playerImgExtra1.style.height = "140px";
         
         playerImgExtra2 = document.createElement('img');
-        //playerImgExtra2.setAttribute('id', 'playerImgExtra2');
         playerImgExtra2.style.height = "140px";
         
         playerImgExtra3 = document.createElement('img');
-        //playerImgExtra3.setAttribute('id', 'playerImgExtra3');
         playerImgExtra3.style.height = "140px";
         
         dealerImgExtra1 = document.createElement('img');
-        //dealerImgExtra1.setAttribute('id', 'dealerImgExtra1');
         dealerImgExtra1.style.height = "140px";
         
         dealerImgExtra2 = document.createElement('img');
-        //dealerImgExtra2.setAttribute('id', 'dealerImgExtra2');
         dealerImgExtra2.style.height = "140px";
         
         dealerImgExtra3 = document.createElement('img');
-        //dealerImgExtra3.setAttribute('id', 'dealerImgExtra3');
         dealerImgExtra3.style.height = "140px";
 
         // Retrieve selected images from image bank
@@ -176,19 +168,6 @@ function calcValue(cardVal) {
     }
     return value;
 }
-
-/**
- * 
- * @param {*} playerImgExtra3 
- * @param {*} dealerImgExtra3 
- */
-// function compareWar(playerImgExtra3, dealerImgExtra3) {
-//     //compare(playerImgExtra3, dealerImgExtra3);
-//     if (playerImgExtra3 == dealerImgExtra3 || (playerImgExtra3 % 13) == (dealerImgExtra3 % 13)) {
-//         tie(playerImgExtra3, dealerImgExtra3);
-//     }
-
-// }
 
 function checkWin() {
     console.log(usedCards.length);
