@@ -59,8 +59,8 @@ function dealCards() {
     card1.innerHTML = "";
     card2.innerHTML = "";
 
-    card1.style.height = "285px";
-    card2.style.height = "285px";
+    playerImg.style.height = "285px";
+    dealerImg.style.height = "285px";
     
     // Specifying path for images
     playerImg.setAttribute('src', 'img/' + playerCard + '.png');
@@ -100,27 +100,27 @@ function tie(playerCard, dealerCard) {
 
         // Definition of 6 extra cards with styling and ID
         playerImgExtra1 = document.createElement('img');
-        playerImgExtra1.setAttribute('id', 'playerImgExtra1');
+        //playerImgExtra1.setAttribute('id', 'playerImgExtra1');
         playerImgExtra1.style.height = "140px";
         
         playerImgExtra2 = document.createElement('img');
-        playerImgExtra2.setAttribute('id', 'playerImgExtra2');
+        //playerImgExtra2.setAttribute('id', 'playerImgExtra2');
         playerImgExtra2.style.height = "140px";
         
         playerImgExtra3 = document.createElement('img');
-        playerImgExtra3.setAttribute('id', 'playerImgExtra3');
+        //playerImgExtra3.setAttribute('id', 'playerImgExtra3');
         playerImgExtra3.style.height = "140px";
         
         dealerImgExtra1 = document.createElement('img');
-        dealerImgExtra1.setAttribute('id', 'dealerImgExtra1');
+        //dealerImgExtra1.setAttribute('id', 'dealerImgExtra1');
         dealerImgExtra1.style.height = "140px";
         
         dealerImgExtra2 = document.createElement('img');
-        dealerImgExtra2.setAttribute('id', 'dealerImgExtra2');
+        //dealerImgExtra2.setAttribute('id', 'dealerImgExtra2');
         dealerImgExtra2.style.height = "140px";
         
         dealerImgExtra3 = document.createElement('img');
-        dealerImgExtra3.setAttribute('id', 'dealerImgExtra3');
+        //dealerImgExtra3.setAttribute('id', 'dealerImgExtra3');
         dealerImgExtra3.style.height = "140px";
 
         // Retrieve selected images from image bank
