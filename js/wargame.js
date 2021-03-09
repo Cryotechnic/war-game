@@ -142,26 +142,25 @@ function tie(playerCard, dealerCard) {
         card2.appendChild(dealerImgExtra2);
         card2.appendChild(dealerImgExtra3);
 
+        var playerVal = calcValue(playerImgExtra3);
+        var dealerVal = calcValue(dealerImgExtra3);
         // Compare war cards & update point count
-        compare(playerImgExtra3, dealerImgExtra3); // FIXME: implement war method instead of normal compare
+        compare(playerVal, dealerVal);
         pointCount();
 
         //return [playerCard, dealerCard, card1, card2]; // TESTME: Test to see if return is required
     }
 }
 
-function compare(playerCard, dealerCard) {
-    console.log("COMPARE " + playerCard + " " + dealerCard);
-    var playerVal = calcValue(playerCard);
+function compare(playerVal, dealerVal) {
+    //console.log("COMPARE " + playerCard + " " + dealerCard);
     console.log("player value: " + playerVal);
-    var dealerVal = calcValue(dealerCard);
     console.log("dealer value: " + dealerVal);
-    console.log(playerVal + " " + dealerVal);
-    if (playerVal > dealerVal && playerCard > dealerCard) {
-        console.log(playerCard);
+    if (playerVal > dealerVal) {
+        //console.log(playerCard);
         playerScore++;
-    } else if (playerVal < dealerVal && playerCard < dealerCard) {
-        console.log(dealerCard);
+    } else if (playerVal < dealerVal) {
+        //console.log(dealerCard);
         dealerScore++;
     } else {
         tie(playerVal, dealerVal);
