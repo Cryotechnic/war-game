@@ -135,18 +135,18 @@ function tie(playerCard, dealerCard) {
         card2.appendChild(dealerImgExtra2);
         card2.appendChild(dealerImgExtra3);
 
-        var playerValExtra = calcValue(playerImgExtra3);
-        var dealerValExtra = calcValue(dealerImgExtra3);
+        var playerValExtra = calcValue(extraPlayer3);
+        var dealerValExtra = calcValue(extraDealer3);
 
         console.log("extra player cards: " + extraPlayer1 + " " + extraPlayer2 + " " + extraPlayer3);
         console.log("extra dealer cards: " + extraDealer1 + " " + extraDealer2 + " " + extraDealer3);
         console.log("Calc Extra Player: " + playerValExtra); // RETURNS NAN
         console.log("Calc Extra Dealer: " + dealerValExtra);
         
-        //console.log("extra dealer 3: " + extraDealer3);
         // Compare war cards & update point count
         compare(playerValExtra, dealerValExtra);
         pointCount();
+        checkWinTurn();
         //return [playerCard, dealerCard, card1, card2]; // TESTME: Test to see if return is required
     }
 }
@@ -178,18 +178,19 @@ function calcValue(cardVal) {
 }
 
 function checkWin() {
-    console.log(usedCards.length);
-    document.getElementsByTagName('button')[0].disabled = true;
+    console.log("CHECKWIN: " + usedCards.length);
     document.getElementsByTagName('h1')[1].setAttribute('id', "winPlayer");
     document.getElementsByTagName('h1')[3].setAttribute('id', 'winDealer');
     document.getElementsByTagName('h1')[0].setAttribute('id', "textPlayer");
     document.getElementsByTagName('h1')[2].setAttribute('id', 'textDealer');
     if (playerScore > dealerScore && usedCards.length >= 2) {
+        document.getElementsByTagName('button')[0].disabled = true;
         console.log("Player has won!");
         textPlayer.innerHTML = "Player has won the hand";
         winPlayer.style.cssText = "color: green";
         console.log(winPlayer);
     } else if (playerScore < dealerScore && usedCards.length >= 2) {
+        document.getElementsByTagName('button')[0].disabled = true;
         console.log("Dealer has won!");
         textDealer.innerHTML = "Dealer has won the hand";
         winDealer.style.cssText = "color: green"
