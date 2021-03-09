@@ -168,14 +168,11 @@ function compare(playerCard, dealerCard) {
     }
 }
 
-function calcValue(number) {
-    var value = (number % 13);
+function calcValue(cardVal) {
+    var value = cardVal % 13;
 
-    if (value == 0) {
-        console.log(value);
-        value = 10;
-    } else if (value > 10) {
-        console.log(value);
+    if (value == 0 || value > 10) {
+        console.log("CALCVAL:" + value);
         value = 10;
     }
     return value;
