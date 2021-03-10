@@ -17,13 +17,12 @@ function randomCard(max = 52, min = 1) {
     rand = Math.floor(rand);
     rand = rand + min;
 
-    if (usedCards.indexOf(rand) > 0) {console.log("did this " + rand);return randomCard(52);}
-    else {usedCards.push(rand); console.log(usedCards);return rand;}
+    if (usedCards.indexOf(rand) > 0) {return randomCard(52);}
+    else {usedCards.push(rand); return rand;}
 }
 
 /**
- * Assigns the cards in the deck to each player
- * @param {cards} cardDeck 
+ * Adds the back cover at the start of the game
  */
 function assignCards() {
     // Output to user
@@ -141,16 +140,16 @@ function tie(playerCard, dealerCard) {
         var playerValExtra = calcValue(extraPlayer3);
         var dealerValExtra = calcValue(extraDealer3);
 
-        console.log("extra player cards: " + extraPlayer1 + " " + extraPlayer2 + " " + extraPlayer3);
-        console.log("extra dealer cards: " + extraDealer1 + " " + extraDealer2 + " " + extraDealer3);
-        console.log("Calc Extra Player: " + playerValExtra); // RETURNS NAN
-        console.log("Calc Extra Dealer: " + dealerValExtra);
+        // For debug purposes
+        // console.log("extra player cards: " + extraPlayer1 + " " + extraPlayer2 + " " + extraPlayer3);
+        // console.log("extra dealer cards: " + extraDealer1 + " " + extraDealer2 + " " + extraDealer3);
+        // console.log("Calc Extra Player: " + playerValExtra);
+        // console.log("Calc Extra Dealer: " + dealerValExtra);
         
-        // Compare war cards & update point count
+        // Compare war cards & update point count with victory-checking
         compare(playerValExtra, dealerValExtra);
         pointCount();
         checkWinTurn();
-        //return [playerCard, dealerCard, card1, card2]; // TESTME: Test to see if return is required
     }
 }
 
@@ -226,14 +225,14 @@ function checkWinTurn() {
     document.getElementsByTagName('h1')[3].setAttribute('id', 'winDealer');
     document.getElementsByTagName('h1')[0].setAttribute('id', "textPlayer");
     document.getElementsByTagName('h1')[2].setAttribute('id', 'textDealer');
-    if (playerScore > dealerScore && usedCards.length >= 52) {
+    if (playerScore > dealerScore && usedCards.length >= 56) {
         console.log("CHECKWINTURN: Player if ran!");
         document.getElementsByTagName('button')[0].disabled = true;
         console.log("Player has won!");
         textPlayer.innerHTML = "Player has won the hand";
         winPlayer.style.cssText = "color: green";
         console.log(winPlayer);
-    } else if (playerScore < dealerScore && usedCards.length >= 52) {
+    } else if (playerScore < dealerScore && usedCards.length >= 56) {
         console.log("CHECKWINTURN: Dealer if ran!");
         document.getElementsByTagName('button')[0].disabled = true;
         console.log("Dealer has won!");
