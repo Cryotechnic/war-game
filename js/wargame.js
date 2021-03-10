@@ -1,3 +1,11 @@
+/**
+ * Author: Ron Friedman
+ * This file is the main JavaScript file for the War! game 
+ * as part of Assignment 3: JS Cards - War of the 420-311-VA
+ * Internet Programming class at Vanier College.
+ * Last modified: March 9 2020
+ */
+
 // Initializing variables
 var usedCards = []; 
 playerImg = document.createElement('img');
