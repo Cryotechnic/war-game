@@ -225,14 +225,14 @@ function checkWinTurn() {
     document.getElementsByTagName('h1')[3].setAttribute('id', 'winDealer');
     document.getElementsByTagName('h1')[0].setAttribute('id', "textPlayer");
     document.getElementsByTagName('h1')[2].setAttribute('id', 'textDealer');
-    if (playerScore > dealerScore && usedCards.length >= 56) {
+    if (playerScore > dealerScore && usedCards.length >= 52) {
         console.log("CHECKWINTURN: Player if ran!");
         document.getElementsByTagName('button')[0].disabled = true;
         console.log("Player has won!");
         textPlayer.innerHTML = "Player has won the hand";
         winPlayer.style.cssText = "color: green";
         console.log(winPlayer);
-    } else if (playerScore < dealerScore && usedCards.length >= 56) {
+    } else if (playerScore < dealerScore && usedCards.length >= 52) {
         console.log("CHECKWINTURN: Dealer if ran!");
         document.getElementsByTagName('button')[0].disabled = true;
         console.log("Dealer has won!");
