@@ -5,13 +5,11 @@ dealerImg = document.createElement('img');
 playerScore = 0;
 dealerScore = 0;
 
-// FIXME: Some methods use returns, others just pass on their parameters, test to see if you can get away with not using return
-// FIXME: Create img tags before modifying attributes
 
 /**
  * Generates random number in range
- * @param {*} max maximum number 
- * @param {*} min minimum number
+ * @param {integer} max maximum number 
+ * @param {integer} min minimum number
  */
 function randomCard(max = 52, min = 1) {
     var rand = Math.random();
@@ -78,9 +76,14 @@ function dealCards() {
     // Check if the cards values are tied
     tie(playerCard, dealerCard, card1, card2);
     checkWinTurn();
-    //return [playerCard, dealerCard, card1, card2];
 }
 
+/**
+ * If there is a tie with both card values, execute this function. Adds 3 cards to each player
+ * and compares to see who wins. This continues to happen until there is a winner.
+ * @param {integer} playerCard given player card value
+ * @param {integer} dealerCard given dealer card value
+ */
 function tie(playerCard, dealerCard) {
     var card1 = document.getElementsByTagName('figure')[0];
     var card2 = document.getElementsByTagName('figure')[1];
@@ -151,15 +154,18 @@ function tie(playerCard, dealerCard) {
     }
 }
 
+/**
+ * Compares both card values and triggers WAR! if condition is met
+ * @param {integer} playerVal Player card value
+ * @param {integer} dealerVal Dealer card value
+ */
 function compare(playerVal, dealerVal) {
-    console.log("player value: " + playerVal);
-    console.log("dealer value: " + dealerVal);
+    // console.log("player value: " + playerVal);
+    // console.log("dealer value: " + dealerVal); more debug fluff
     if (playerVal > dealerVal) {
-        //console.log(playerCard);
         playerScore++;
-        console.log("PLAYER SCORE: " + playerScore);
+        console.log("PLAYER SCORE: " + playerScore); // You can comment this out as it is not required, but helps!
     } else if (playerVal < dealerVal) {
-        //console.log(dealerCard);
         dealerScore++;
         console.log("DEALER SCORE: " + dealerScore);
     } else {
@@ -167,6 +173,11 @@ function compare(playerVal, dealerVal) {
     }
 }
 
+/**
+ * Takes a card value and checks if it is a J, Q, or K, and assigns appropriate value
+ * @param {integer} cardVal a value to check
+ * @returns value, the actual card value
+ */
 function calcValue(cardVal) {
     var value = cardVal % 13;
 
@@ -177,24 +188,27 @@ function calcValue(cardVal) {
     return value;
 }
 
+/**
+ * This function runs when the user presses the "End Game" anchor element, and checks for a winner
+ */
 function checkWin() {
+    // Get all required elements 
     console.log("CHECKWIN: " + usedCards.length);
     document.getElementsByTagName('h1')[1].setAttribute('id', "winPlayer");
     document.getElementsByTagName('h1')[3].setAttribute('id', 'winDealer');
     document.getElementsByTagName('h1')[0].setAttribute('id', "textPlayer");
     document.getElementsByTagName('h1')[2].setAttribute('id', 'textDealer');
+    // Check statement to check who won
     if (playerScore > dealerScore && usedCards.length >= 2) {
         document.getElementsByTagName('button')[0].disabled = true;
         console.log("Player has won!");
         textPlayer.innerHTML = "Player has won the hand";
         winPlayer.style.cssText = "color: green";
-        console.log(winPlayer);
     } else if (playerScore < dealerScore && usedCards.length >= 2) {
         document.getElementsByTagName('button')[0].disabled = true;
         console.log("Dealer has won!");
         textDealer.innerHTML = "Dealer has won the hand";
         winDealer.style.cssText = "color: green"
-        console.log(winDealer);
     } else {
         console.log("It's a tie!");
         winPlayer.style.cssText = "color: red";
@@ -202,20 +216,24 @@ function checkWin() {
     }
 }
 
+/**
+ * This function is essentially the same thing as the one before, but checks at every turn
+ * instead of on user-click. This automatically calculates the winner once the array is full
+ */
 function checkWinTurn() {
     console.log("CHECKWINTURN: " + usedCards.length);
     document.getElementsByTagName('h1')[1].setAttribute('id', "winPlayer");
     document.getElementsByTagName('h1')[3].setAttribute('id', 'winDealer');
     document.getElementsByTagName('h1')[0].setAttribute('id', "textPlayer");
     document.getElementsByTagName('h1')[2].setAttribute('id', 'textDealer');
-    if (playerScore > dealerScore && usedCards.length >= 56) {
+    if (playerScore > dealerScore && usedCards.length >= 52) {
         console.log("CHECKWINTURN: Player if ran!");
         document.getElementsByTagName('button')[0].disabled = true;
         console.log("Player has won!");
         textPlayer.innerHTML = "Player has won the hand";
         winPlayer.style.cssText = "color: green";
         console.log(winPlayer);
-    } else if (playerScore < dealerScore && usedCards.length >= 56) {
+    } else if (playerScore < dealerScore && usedCards.length >= 52) {
         console.log("CHECKWINTURN: Dealer if ran!");
         document.getElementsByTagName('button')[0].disabled = true;
         console.log("Dealer has won!");
